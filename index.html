@@ -11,8 +11,8 @@
     <div class="wrapper"  id="app">
         <header>
         <div class="container">
-            <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMovies(search)"> 
-           <input type="button" value="Search" @click="searchMovies(search)">
+            <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMoviesInput()"> 
+           <input type="button" value="Search" @click="searchMoviesInput()">
           </div>
         </header>
         
@@ -23,6 +23,14 @@
             <span class="original_language">{{movie.original_language}}</span>
             <span>{{movie.vote_average}}</span>
           </div>
+        </div>
+        <div class="arrow">
+            <button @click="arrowLeft()">
+                <i class="fas fa-arrow-left arrowLeft"></i>
+            </button>
+            <button @click="arrowRight()">
+                <i class="fas fa-arrow-right arrowRight"></i>
+            </button>
         </div>
       </div>
 
