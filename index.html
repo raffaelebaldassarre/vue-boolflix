@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 </head>
 <body>
-    <div class="wrapper"  id="app">
+    <div id="app">
         <header>
-        <div class="container">
-            <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMoviesInput()"> 
-           <input type="button" value="Search" @click="searchMoviesInput()">
+        <div class="container flex">
+            <img src="assets/img/boolflix.png" alt="">
+            <div class="container_input flex">
+                <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMoviesInput()"> 
+                <button class="input_button"@click="searchMoviesInput()">Cerca</button>
+            </div>
           </div>
         </header>
         
-        <div class="movies-container container">
+        <div class="movies-container">
           <div class="movie" v-for="movie in listMovies">
             <h2>{{movie.title}}</h2>
             <span class="original_title">{{movie.original_title}}</span>
-            <span class="original_language">{{movie.original_language}}</span>
-            <!-- <span>{{movie.vote_average}}</span> -->
+            <span>
+                <img :src=`https://www.countryflags.io/${movie.original_language}/shiny/64.png`>
+            </span>
+            <span>
             <i v-for="starfull in movie.vote_average" class="fas fa-star"></i>
             <i v-for="starempty in (5 - movie.vote_average)" class="far fa-star"></i>
+            </span>
           </div>
         </div>
         <!-- Frecce per cambiare le pagine -->
-        <div class="arrow">
+        <div class="arrow flex">
             <button @click="arrowLeft()">
                 <i class="fas fa-arrow-left arrowLeft"></i>
             </button>

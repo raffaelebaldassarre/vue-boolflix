@@ -9,11 +9,21 @@
     background: #1e2d3b;
     min-height: 100vh;
   }
+
+  .flex{
+    display: flex;
+  }
   
   .container {
     width: 1070px;
     height: 100%;
     margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .container_input{
+    align-items: center;
   }
   
   header {
@@ -21,9 +31,24 @@
     height: 70px;
     background: rgb(46, 58, 70);
   }
-  header img {
-    height: 50px;
-    margin-top: 10px;
+
+  .inputTextSearch{
+    height: 30px;
+    width: 200px;
+    font-style: italic;
+    font-size: 1rem;
+    outline: none;
+    border-style: none;
+    padding-left: 5px;
+  }
+
+  .input_button{
+    height: 30px;
+    border-radius: 5%;
+    width: 50px;
+    margin-left: 10px;
+    border-style: none;
+    cursor: pointer;
   }
   
   .movies-container {
@@ -39,10 +64,10 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    flex-basis: 200px;
-    padding: 20px;
+    flex-basis: 20%;
+    padding: 10px;
     margin: 10px 20px;
-    height: 360px;
+    height: 400px;
     background: rgb(46, 58, 70);
     text-align: center;
   }
@@ -72,13 +97,12 @@
     margin-top: 25px;
   }
 
-  .arrowLeft{
-    width: 100px;
-    font-size: 50px;
+  .arrow{
+      justify-content: center;
+      margin-bottom: 100px;
   }
 
-  .arrowRight{
-    width: 100px;
-    font-size: 50px;
+  .arrowLeft ,.arrowRight{
+    font-size: 20px;
   }
   
