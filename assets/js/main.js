@@ -2,22 +2,27 @@ let app = new Vue ({
     el: "#app",
     data : {
         listMovies : [],
+        listTvShows : [],
         search : "",
-        page : 1,
-        totalpages : ''
+        pageMovies : 1,
+        pageTvShows : 1,
+        totalpagesMovies : '',
+        totalpagesTvShows : ''
     },
     methods : {
-        searchMoviesInput(){
-            this.page = 1;
-            this.searchMovies();
+        searchMoviesTvShowsInput(){
+            this.pageMovies = 1;
+            this.pageTvShows = 1;
+            this.searchMoviesTvShows();
         },
-        searchMovies(){
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&page= ${this.page} &include_adult=false&query= ${this.search}`)
+        searchMoviesTvShows(){
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&page=${this.pageMovies}&include_adult=false&query=${this.search}`)
             .then(response => {
+                console.log(response);
                 console.log(response.data);
                 let movies = response.data.results;
                 this.listMovies = movies;
-                this.totalpages = response.data.total_pages;
+                this.totalpagesMovies = response.data.total_pages;
                 movies.forEach(movie => {
                     let score = Math.ceil(movie.vote_average / 2);
                     movie.vote_average = score;
@@ -39,19 +44,61 @@ let app = new Vue ({
                         movie.original_language = "ua";
                       }
                 });
-            })
+            }),
+
+            axios.get(`https://api.themoviedb.org/3/search/tv?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-It&page=${this.pageTvShows}&include_adult=false&query=${this.search}`)
+            .then(response => {
+                console.log(response.data.results);
+                let tvShows = response.data.results;
+                this.listTvShows = tvShows;
+                this.totalpagesTvShows = response.data.total_pages;
+                tvShows.forEach(tvShow => {
+                    let score = Math.ceil(tvShow.vote_average / 2);
+                    tvShow.vote_average = score;
+                    if (tvShow.original_language == "en"){
+                        tvShow.original_language = "gb";
+                      } else if (tvShow.original_language == "zh") {
+                        tvShow.original_language = "cn"
+                      } else if (tvShow.original_language == "ko") {
+                        tvShow.original_language = "kr"
+                      } else if(tvShow.original_language == "vi"){
+                        tvShow.original_language = "vn";
+                      }else if(tvShow.original_language == "et"){
+                        tvShow.original_language = "ee";
+                      }else if(tvShow.original_language == "ja"){
+                        tvShow.original_language = "jp";
+                      }else if(tvShow.original_language == "da"){
+                        tvShow.original_language = "dk";
+                      } else if(tvShow.original_language == "hu"){
+                        tvShow.original_language = "ua";
+                      }
+                });
+            });
         },
-        arrowRight(){
-            if(this.page != this.totalpages){
-            this.page++;
-            this.searchMovies();
+        arrowRightMovies(){
+            if(this.pageMovies != this.totalpagesMovies){
+            this.pageMovies++;
+            this.searchMoviesTvShows();
             }
         },
-        arrowLeft(){
-            if(this.page > 1){
-            this.page--;
-            this.searchMovies();
+        arrowLeftMovies(){
+            if(this.pageMovies > 1){
+            this.pageMovies--;
+            this.searchMoviesTvShows();
+            }
+        },
+        arrowRightTvShows(){
+            if(this.pageTvShows != this.totalpagesTvShows){
+            this.pageTvShows++;
+            this.searchMoviesTvShows();
+            }
+        },
+        arrowLeftTvShows(){
+            if(this.pageTvShows > 1){
+            this.pageTvShows--;
+            this.searchMoviesTvShows();
             }
         }
     }
 });
+    

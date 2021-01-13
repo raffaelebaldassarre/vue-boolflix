@@ -67,7 +67,7 @@
     flex-basis: 20%;
     padding: 10px;
     margin: 10px 20px;
-    height: 400px;
+    min-height: 200px;
     background: rgb(46, 58, 70);
     text-align: center;
   }
