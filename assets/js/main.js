@@ -16,7 +16,9 @@ let app = new Vue ({
             this.searchMoviesTvShows();
         },
         searchMoviesTvShows(){
+         
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&page=${this.pageMovies}&include_adult=false&query=${this.search}`)
+
             .then(response => {
                 //console.log(response);
                 console.log(response.data.results);
@@ -47,6 +49,7 @@ let app = new Vue ({
             }),
 
             axios.get(`https://api.themoviedb.org/3/search/tv?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-It&page=${this.pageTvShows}&include_adult=false&query=${this.search}`)
+
             .then(response => {
                 console.log(response.data.results);
                 let tvShows = response.data.results;
