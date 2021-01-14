@@ -7,7 +7,6 @@
   
   body {
     background: #1e2d3b;
-    min-height: 100vh;
   }
 
   .flex{
@@ -45,7 +44,7 @@
 
   .inputTextSearch{
     height: 30px;
-    width: 200px;
+    width: 300px;
     font-style: italic;
     font-size: 1rem;
     outline: none;
@@ -98,6 +97,7 @@
   }
 
   .movieInfoCard, .tvShowInfoCard{
+    color: white;
     display: none;
     position: absolute;
     top: 0;
@@ -107,7 +107,7 @@
 
   .movieCard:hover .movieInfoCard, .tvShowCard:hover .tvShowInfoCard{
     display: block;
-    background-color: lightgray;
+    background-color: rgba(0, 0, 0, .9);
   }
 
   .arrow{
