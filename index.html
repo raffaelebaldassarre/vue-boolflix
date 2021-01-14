@@ -11,7 +11,7 @@
     <div id="app">
         <header>
             <div class="container_header flex">
-                <img src="assets/img/boolflix.png" alt="">
+                <img src="assets/img/boolflix.png" @click="reloadPage()" class="logo">
                 <div class="container_input flex">
                     <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="search" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
                     <button class="input_button"@click="searchMoviesTvShowsInput()">Cerca</button>
@@ -22,14 +22,14 @@
         <main class="container_main" v-if='listMovies != "" || listTvShows != ""'>
             <h2>FILM</h2>
             <div class="movies_container flex">
-                <div class="arrow flex">
-                    <button @click="arrowLeftMovies()">
-                        <i class="fas fa-arrow-left arrowLeft"></i>
+                <div class="arrow_movie_left flex">
+                    <button @click="arrowLeftMovies()" class="changePg">
+                        <span class="changePg">Pg. {{pageMovies - 1}}</span>
                     </button>
                 </div>
 
                 <div class="movie-container flex">
-
+                    
                     <div class="movieCard" v-for="movie in listMovies">
                         <img v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
                         <span v-else class="image_unavailable">
@@ -50,18 +50,18 @@
                     </div>
 
                 </div>
-                <div class="arrow flex">
-                    <button @click="arrowRightMovies()">
-                        <i class="fas fa-arrow-right arrowRight"></i>
+                <div class="arrow_movie_right flex">
+                    <button @click="arrowRightMovies()" class="changePg">
+                        <span class="changePg">Pg. {{pageMovies + 1}}</span>
                     </button>
                 </div>
             </div>
 
             <h2>SERIE TV</h2>
             <div class="tvShows_container flex">
-                <div class="arrow flex">
-                    <button @click="arrowLeftTvShows()">
-                        <i class="fas fa-arrow-left arrowLeft"></i>
+                <div class="arrow_tvShow_left flex">
+                    <button @click="arrowLeftTvShows()" class="changePg">
+                        <span>Pg. {{pageTvShows - 1}}</span>
                     </button>
                 </div>
 
@@ -88,9 +88,9 @@
 
                 </div>
 
-                <div class="arrow flex">
-                    <button @click="arrowRightTvShows()">
-                        <i class="fas fa-arrow-right arrowRight"></i>
+                <div class="arrow_tvShow_right flex">
+                    <button @click="arrowRightTvShows()" class="changePg">
+                        <span>Pg. {{pageTvShows + 1}}</span>
                     </button>
                 </div>
             </div>

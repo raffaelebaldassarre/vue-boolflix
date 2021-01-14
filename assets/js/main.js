@@ -101,6 +101,9 @@ let app = new Vue ({
             this.pageTvShows--;
             this.searchMoviesTvShows();
             }
+        },
+        reloadPage(){
+            location.reload();
         }
     }
 });
