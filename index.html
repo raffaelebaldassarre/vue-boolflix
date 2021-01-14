@@ -19,7 +19,7 @@
             </div>
         </header>
        
-        <main class="container_main">
+        <main class="container_main" v-if='listMovies != "" || listTvShows != ""'>
             <h2>FILM</h2>
             <div class="movies_container flex">
                 <div class="arrow flex">
@@ -27,7 +27,7 @@
                         <i class="fas fa-arrow-left arrowLeft"></i>
                     </button>
                 </div>
-                <div class="movies-container">
+                <div class="movie-container flex">
 
                     <div class="movieCard" v-for="movie in listMovies">
                         <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
@@ -52,14 +52,14 @@
             </div>
 
             <h2>SERIE TV</h2>
-            <div class="tvShows_Container flex">
+            <div class="tvShows_container flex">
                 <div class="arrow flex">
                     <button @click="arrowLeftTvShows()">
                         <i class="fas fa-arrow-left arrowLeft"></i>
                     </button>
                 </div>
 
-                <div class="tvShow-container">
+                <div class="tvShow-container flex">
 
                     <div class="tvShowCard" v-for="tvShow in listTvShows">
                         <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" class="poster">
