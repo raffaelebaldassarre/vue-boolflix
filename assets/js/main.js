@@ -7,7 +7,8 @@ let app = new Vue ({
         pageMovies : 1,
         pageTvShows : 1,
         totalpagesMovies : '',
-        totalpagesTvShows : ''
+        totalpagesTvShows : '',
+        letters : ["a","b","c","d","e","f","g","h","i","l","m","n","k","j","o","p","q","r","s","t","u","v","z","y","x"]
     },
     methods : {
         searchMoviesTvShowsInput(){
@@ -17,7 +18,7 @@ let app = new Vue ({
         },
         searchMoviesTvShows(){
          
-            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&page=${this.pageMovies}&include_adult=false&query=${this.search}`)
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&query=${this.search}&page=${this.pageMovies}&include_adult=false`)
 
             .then(response => {
                 //console.log(response);
@@ -48,7 +49,7 @@ let app = new Vue ({
                 });
             }),
 
-            axios.get(`https://api.themoviedb.org/3/search/tv?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-It&page=${this.pageTvShows}&include_adult=false&query=${this.search}`)
+            axios.get(`https://api.themoviedb.org/3/search/tv?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-It&query=${this.search}&page=${this.pageTvShows}&include_adult=false`)
 
             .then(response => {
                 console.log(response.data.results);
@@ -105,6 +106,12 @@ let app = new Vue ({
         reloadPage(){
             location.reload();
         }
+    },
+    // Random
+    mounted (){
+        let randomLetter = this.letters[Math.floor(Math.random() * this.letters.length)];
+        this.search = randomLetter;
+        this.searchMoviesTvShowsInput()
     }
 });
     

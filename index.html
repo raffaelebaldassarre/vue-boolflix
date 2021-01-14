@@ -23,8 +23,8 @@
             <h2>FILM</h2>
             <div class="movies_container flex">
                 <div class="arrow_movie_left flex">
-                    <button @click="arrowLeftMovies()" class="changePg">
-                        <span class="changePg">Pg. {{pageMovies - 1}}</span>
+                    <button @click="arrowLeftMovies()" class="changePg" v-if='pageMovies > 1'>
+                        <span>Pag. {{pageMovies - 1}}</span>
                     </button>
                 </div>
 
@@ -38,11 +38,11 @@
                         </span>
                         <div class="movieInfoCard">
                             <h2>{{movie.title}}</h2>
-                            <span class="original_title">{{movie.original_title}}</span>
-                            <span>
+                            <span class="original_title">Titolo Originale: {{movie.original_title}}</span>
+                            <span class="flex flags">Lingua Originale:
                                 <img :src="`https://www.countryflags.io/${movie.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${movie.original_language}`">
                             </span>
-                            <span>
+                            <span>Voto :
                             <i v-for="starfull in movie.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - movie.vote_average)" class="far fa-star"></i>
                             </span>
                             <span class="movie_overview">{{movie.overview}}</span>
@@ -51,8 +51,8 @@
 
                 </div>
                 <div class="arrow_movie_right flex">
-                    <button @click="arrowRightMovies()" class="changePg">
-                        <span class="changePg">Pg. {{pageMovies + 1}}</span>
+                    <button @click="arrowRightMovies()" class="changePg" v-if='(pageMovies < totalpagesMovies)'>
+                        <span>Pag. {{pageMovies + 1}}</span>
                     </button>
                 </div>
             </div>
@@ -60,8 +60,8 @@
             <h2>SERIE TV</h2>
             <div class="tvShows_container flex">
                 <div class="arrow_tvShow_left flex">
-                    <button @click="arrowLeftTvShows()" class="changePg">
-                        <span>Pg. {{pageTvShows - 1}}</span>
+                    <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
+                        <span>Pag. {{pageTvShows - 1}}</span>
                     </button>
                 </div>
 
@@ -75,11 +75,11 @@
                         </span>
                         <div class="tvShowInfoCard">
                             <h2>{{tvShow.name}}</h2>
-                            <span class="original_title">{{tvShow.original_name}}</span>
-                            <span>
+                            <span class="original_title">Titolo Originale: {{tvShow.original_name}}</span>
+                            <span class="flex flags">Lingua Originale:
                                 <img :src="`https://www.countryflags.io/${tvShow.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${tvShow.original_language}`">
                             </span>
-                            <span>
+                            <span>Voto :
                             <i v-for="starfull in tvShow.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - tvShow.vote_average)" class="far fa-star"></i>
                             </span>
                             <span class="tvShow_overview" >{{tvShow.overview}}</span>
@@ -90,7 +90,7 @@
 
                 <div class="arrow_tvShow_right flex">
                     <button @click="arrowRightTvShows()" class="changePg">
-                        <span>Pg. {{pageTvShows + 1}}</span>
+                        <span>Pag. {{pageTvShows + 1}}</span>
                     </button>
                 </div>
             </div>
