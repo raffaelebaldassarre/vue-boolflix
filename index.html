@@ -10,7 +10,7 @@
 <body>
     <div id="app">
         <header>
-            <div class="container flex">
+            <div class="container_header flex">
                 <img src="assets/img/boolflix.png" alt="">
                 <div class="container_input flex">
                     <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
@@ -19,15 +19,15 @@
             </div>
         </header>
        
-        <main>
-            <div class="movies_container">
-                <h2>FILM</h2>
+        <main class="container_main">
+            <h2>FILM</h2>
+            <div class="movies_container flex">
+                <div class="arrow flex">
+                    <button @click="arrowLeftMovies()">
+                        <i class="fas fa-arrow-left arrowLeft"></i>
+                    </button>
+                </div>
                 <div class="movies-container">
-                    <div class="arrow flex">
-                        <button @click="arrowLeftMovies()">
-                            <i class="fas fa-arrow-left arrowLeft"></i>
-                        </button>
-                    </div>
 
                     <div class="movieCard" v-for="movie in listMovies">
                         <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
@@ -43,23 +43,23 @@
                         </div>
                     </div>
 
-                    <div class="arrow flex">
-                        <button @click="arrowRightMovies()">
-                            <i class="fas fa-arrow-right arrowRight"></i>
-                        </button>
-                    </div>
-
+                </div>
+                <div class="arrow flex">
+                    <button @click="arrowRightMovies()">
+                        <i class="fas fa-arrow-right arrowRight"></i>
+                    </button>
                 </div>
             </div>
 
-            <div class="tvShows_Container">
-                <h2>SERIE TV</h2>
+            <h2>SERIE TV</h2>
+            <div class="tvShows_Container flex">
+                <div class="arrow flex">
+                    <button @click="arrowLeftTvShows()">
+                        <i class="fas fa-arrow-left arrowLeft"></i>
+                    </button>
+                </div>
+
                 <div class="tvShow-container">
-                    <div class="arrow flex">
-                        <button @click="arrowLeftTvShows()">
-                            <i class="fas fa-arrow-left arrowLeft"></i>
-                        </button>
-                    </div>
 
                     <div class="tvShowCard" v-for="tvShow in listTvShows">
                         <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" class="poster">
@@ -74,13 +74,13 @@
                             </span>
                         </div>
                     </div>
-                
-                    <div class="arrow flex">
-                        <button @click="arrowRightTvShows()">
-                            <i class="fas fa-arrow-right arrowRight"></i>
-                        </button>
-                    </div>
 
+                </div>
+
+                <div class="arrow flex">
+                    <button @click="arrowRightTvShows()">
+                        <i class="fas fa-arrow-right arrowRight"></i>
+                    </button>
                 </div>
             </div>
         </main>
