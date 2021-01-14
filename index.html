@@ -10,63 +10,80 @@
 <body>
     <div id="app">
         <header>
-        <div class="container flex">
-            <img src="assets/img/boolflix.png" alt="">
-            <div class="container_input flex">
-                <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
-                <button class="input_button"@click="searchMoviesTvShowsInput()">Cerca</button>
+            <div class="container flex">
+                <img src="assets/img/boolflix.png" alt="">
+                <div class="container_input flex">
+                    <input class="inputTextSearch" type="text" placeholder="Cerca un film" v-model="search" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
+                    <button class="input_button"@click="searchMoviesTvShowsInput()">Cerca</button>
+                </div>
             </div>
-          </div>
         </header>
-        
-        <div class="movies-container">
-          <div class="movie" v-for="movie in listMovies">
-            <h2>{{movie.title}}</h2>
-            <span class="original_title">{{movie.original_title}}</span>
-            <span>
-                <img :src="`https://www.countryflags.io/${movie.original_language}/shiny/64.png`">
-            </span>
-            <span>
-            <i v-for="starfull in movie.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - movie.vote_average)" class="far fa-star"></i>
-            </span>
-          </div>
-        </div>
-        <!-- Frecce per cambiare le pagine -->
-        <div class="arrow flex">
-            <button @click="arrowLeftMovies()">
-                <i class="fas fa-arrow-left arrowLeft"></i>
-            </button>
-            <button @click="arrowRightMovies()">
-                <i class="fas fa-arrow-right arrowRight"></i>
-            </button>
-        </div>
-        <!-- /Frecce per cambiare le pagine -->
-      
+       
+        <main>
+            <div class="movies_container">
+                <h2>FILM</h2>
+                <div class="movies-container">
+                    <div class="arrow flex">
+                        <button @click="arrowLeftMovies()">
+                            <i class="fas fa-arrow-left arrowLeft"></i>
+                        </button>
+                    </div>
 
-      <div class="movies-container">
-        <div class="movie" v-for="tvShow in listTvShows">
-          <h2>{{tvShow.name}}</h2>
-          <span class="original_title">{{tvShow.original_name}}</span>
-          <span>
-              <img :src="`https://www.countryflags.io/${tvShow.original_language}/shiny/64.png`">
-          </span>
-          <span>
-          <i v-for="starfull in tvShow.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - tvShow.vote_average)" class="far fa-star"></i>
-          </span>
-        </div>
-      </div>
-        <!-- Frecce per cambiare le pagine -->
-        <div class="arrow flex">
-        <button @click="arrowLeftTvShows()">
-            <i class="fas fa-arrow-left arrowLeft"></i>
-        </button>
-        <button @click="arrowRightTvShows()">
-            <i class="fas fa-arrow-right arrowRight"></i>
-        </button>
-    </div>
-    <!-- /Frecce per cambiare le pagine -->
+                    <div class="movieCard" v-for="movie in listMovies">
+                        <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
+                        <div class="movieInfoCard">
+                            <h2>{{movie.title}}</h2>
+                            <span class="original_title">{{movie.original_title}}</span>
+                            <span>
+                                <img :src="`https://www.countryflags.io/${movie.original_language}/shiny/64.png`">
+                            </span>
+                            <span>
+                            <i v-for="starfull in movie.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - movie.vote_average)" class="far fa-star"></i>
+                            </span>
+                        </div>
+                    </div>
 
-    
+                    <div class="arrow flex">
+                        <button @click="arrowRightMovies()">
+                            <i class="fas fa-arrow-right arrowRight"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="tvShows_Container">
+                <h2>SERIE TV</h2>
+                <div class="tvShow-container">
+                    <div class="arrow flex">
+                        <button @click="arrowLeftTvShows()">
+                            <i class="fas fa-arrow-left arrowLeft"></i>
+                        </button>
+                    </div>
+
+                    <div class="tvShowCard" v-for="tvShow in listTvShows">
+                        <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" class="poster">
+                        <div class="tvShowInfoCard">
+                            <h2>{{tvShow.name}}</h2>
+                            <span class="original_title">{{tvShow.original_name}}</span>
+                            <span>
+                                <img :src="`https://www.countryflags.io/${tvShow.original_language}/shiny/64.png`">
+                            </span>
+                            <span>
+                            <i v-for="starfull in tvShow.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - tvShow.vote_average)" class="far fa-star"></i>
+                            </span>
+                        </div>
+                    </div>
+                
+                    <div class="arrow flex">
+                        <button @click="arrowRightTvShows()">
+                            <i class="fas fa-arrow-right arrowRight"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </main>
 
     </div>
 

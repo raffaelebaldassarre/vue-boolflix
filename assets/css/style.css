@@ -51,29 +51,16 @@
     cursor: pointer;
   }
   
-  .movies-container {
+  .movies-container ,.tvShow-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 100px 0;
+    overflow-x: scroll;
+    margin: 0 20px;
   }
-  
-  .movie {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    flex-basis: 20%;
-    padding: 10px;
-    margin: 10px 20px;
-    min-height: 200px;
-    background: rgb(46, 58, 70);
-    text-align: center;
-  }
-  
-  .movie img {
-    max-width: 100%;
+
+  .movieCard .poster, .tvShowCard .poster{
+    width: 342px;
+    height: 480px;
   }
   
   .movie h3 {
@@ -92,13 +79,24 @@
     color: grey;
   }
   
-  #genre {
-    float: right;
-    margin-top: 25px;
+  .movieCard , .tvShowCard{
+    position: relative;
+  }
+
+  .movieInfoCard, .tvShowInfoCard{
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .movieCard:hover .movieInfoCard, .tvShowCard:hover .tvShowInfoCard{
+    display: block;
+    background-color: lightgray;
   }
 
   .arrow{
-      justify-content: center;
       margin-bottom: 100px;
   }
 

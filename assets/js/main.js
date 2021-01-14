@@ -18,8 +18,8 @@ let app = new Vue ({
         searchMoviesTvShows(){
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&page=${this.pageMovies}&include_adult=false&query=${this.search}`)
             .then(response => {
-                console.log(response);
-                console.log(response.data);
+                //console.log(response);
+                console.log(response.data.results);
                 let movies = response.data.results;
                 this.listMovies = movies;
                 this.totalpagesMovies = response.data.total_pages;
