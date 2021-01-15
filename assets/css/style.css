@@ -28,7 +28,6 @@ body {
 
 .container_header {
   width: 1070px;
-  height: 100%;
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
@@ -46,7 +45,6 @@ body {
 
 header {
   width: 100%;
-  height: 70px;
 }
 
 .inputTextSearch{
@@ -147,26 +145,27 @@ h2{
   border: 1px solid white;
   border-radius: 5%;
 }
-
+/*  */
 .arrow_movie_left, .arrow_movie_right{
   margin: 0 30px;
+  display: none;
 }
 
-.arrow_movie_left,.arrow_movie_right{
-  display: none;
-  }
+.movie-container:first-child{
+  position: relative;
+}
 
-.movies_container:hover .arrow_movie_left{
+.movie-container:hover .arrow_movie_left{
 display: block;
 position: absolute;
 left: 40px;
 z-index: 2;
 }
 
-.movies_container:hover .arrow_movie_right{
+.movie-container:hover .arrow_movie_right{
 display: block;
-position: absolute;
-right: 30px;
+position: relative;
+right: 150px;
 z-index: 2;
 }
 
@@ -175,20 +174,24 @@ z-index: 2;
   display: none;
 }
 
-.tvShows_container:hover .arrow_tvShow_left{
+.tvShow-container:first-child{
+  position: relative;
+}
+
+.tvShow-container:hover .arrow_tvShow_left{
   display: block;
   position: absolute;
   left: 40px;
   z-index: 2;
   }
 
-  .tvShows_container:hover .arrow_tvShow_right{
+  .tvShow-container:hover .arrow_tvShow_right{
   display: block;
-  position: absolute;
-  right: 30px;
+  position: relative;
+  right: 150px;
   z-index: 2;
   }
-
+/*  */
 .image_unavailable{
   position: relative;
   display: flex;
@@ -209,8 +212,12 @@ z-index: 2;
   font-size: 15px;
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
+.changePg:hover{
+  background-color: black;
+}
 
 /* for Chrome */
 ::-webkit-scrollbar {

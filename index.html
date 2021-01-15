@@ -22,13 +22,14 @@
         <main class="container_main" v-if='listMovies != "" || listTvShows != ""'>
             <h2>FILM</h2>
             <div class="movies_container flex">
-                <div class="arrow_movie_left flex">
-                    <button @click="arrowLeftMovies()" class="changePg" v-if='pageMovies > 1'>
-                        <span>Pag. {{pageMovies - 1}}</span>
-                    </button>
-                </div>
 
                 <div class="movie-container flex">
+
+                    <div class="arrow_movie_left flex">
+                        <button @click="arrowLeftMovies()" class="changePg" v-if='pageMovies > 1'>
+                            <span>Pag. {{pageMovies - 1}}</span>
+                        </button>
+                    </div>
                     
                     <div class="movieCard" v-for="movie in listMovies">
                         <img v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
@@ -48,24 +49,26 @@
                             <span class="movie_overview">{{movie.overview}}</span>
                         </div>
                     </div>
+                    
+                    <div class="arrow_movie_right flex">
+                        <button @click="arrowRightMovies()" class="changePg" v-if='(pageMovies < totalpagesMovies)'>
+                            <span>Pag. {{pageMovies + 1}}</span>
+                        </button>
+                    </div>
+                </div>
 
-                </div>
-                <div class="arrow_movie_right flex">
-                    <button @click="arrowRightMovies()" class="changePg" v-if='(pageMovies < totalpagesMovies)'>
-                        <span>Pag. {{pageMovies + 1}}</span>
-                    </button>
-                </div>
             </div>
 
             <h2>SERIE TV</h2>
             <div class="tvShows_container flex">
-                <div class="arrow_tvShow_left flex">
-                    <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
-                        <span>Pag. {{pageTvShows - 1}}</span>
-                    </button>
-                </div>
 
                 <div class="tvShow-container flex">
+
+                    <div class="arrow_tvShow_left flex">
+                        <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
+                            <span>Pag. {{pageTvShows - 1}}</span>
+                        </button>
+                    </div>
 
                     <div class="tvShowCard" v-for="tvShow in listTvShows">
                         <img v-if="tvShow.poster_path" :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" class="poster">
@@ -86,13 +89,14 @@
                         </div>
                     </div>
 
+                    <div class="arrow_tvShow_right flex">
+                        <button @click="arrowRightTvShows()" class="changePg">
+                            <span>Pag. {{pageTvShows + 1}}</span>
+                        </button>
+                    </div>
+
                 </div>
 
-                <div class="arrow_tvShow_right flex">
-                    <button @click="arrowRightTvShows()" class="changePg">
-                        <span>Pag. {{pageTvShows + 1}}</span>
-                    </button>
-                </div>
             </div>
         </main>
 
