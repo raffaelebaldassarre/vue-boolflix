@@ -13,15 +13,15 @@
             <div class="container_header flex">
                 <img src="assets/img/baldflix.png" @click="reloadPage()" class="logo">
                 <div class="container_input flex">
-                    <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="search" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
+                    <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="searchNow" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
                     <button class="input_button"@click="searchMoviesTvShowsInput()">Cerca</button>
                 </div>
             </div>
         </header>
        
-        <main class="container_main" v-if='listMovies != "" || listTvShows != ""'>
-            <h2>FILM</h2>
-            <div class="movies_container flex">
+        <main class="container_main">
+            <div class="movies_container" v-if='listMovies != ""'>
+                <h2>FILM</h2>
 
                 <div class="movie-container flex">
 
@@ -59,10 +59,10 @@
 
             </div>
 
-            <h2>SERIE TV</h2>
-            <div class="tvShows_container flex">
+            <div class="tvShows_container">
+                <h2>SERIE TV</h2>
 
-                <div class="tvShow-container flex">
+                <div class="tvShow-container flex" v-if='listTvShows != ""'>
 
                     <div class="arrow_tvShow_left flex">
                         <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="arrow_tvShow_right flex">
-                        <button @click="arrowRightTvShows()" class="changePg">
+                        <button @click="arrowRightTvShows()" class="changePg" v-if='(pageTvShows < totalpagesTvShows)'>
                             <span>Pag. {{pageTvShows + 1}}</span>
                         </button>
                     </div>

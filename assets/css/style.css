@@ -68,16 +68,16 @@ header {
 }
 
 h2{   
-  font-size: 35px;
+  font-size: 25px;
   margin: 30px 50px;
   color: #FFFFFF;
 }
 
-.movies_container ,.tvShows_container {
+/* .movies_container ,.tvShows_container {
   align-items: center;
   justify-content: center;
   position: relative;
-}
+} */
 
 .movie-container ,.tvShow-container {
   align-items: center;
@@ -111,8 +111,8 @@ h2{
 }
 
 .movieInfoCard h2, .tvShowInfoCard h2{
-    font-size: 35px;
-    margin: 30px 20px;
+  font-size: 35px;
+  margin: 30px 20px;
 }
 
 .movieCard , .tvShowCard{
@@ -120,7 +120,7 @@ h2{
   height: 480px;
   width: 342px;
   margin: 0 3px;
-  transition:linear 0.2s;
+  transition: ease-in-out 0.5s;
 }
 
 .movieCard:hover, .tvShowCard:hover{
@@ -145,13 +145,13 @@ h2{
   border: 1px solid white;
   border-radius: 5%;
 }
-/*  */
+/* Paginazione */
 .arrow_movie_left, .arrow_movie_right{
   margin: 0 30px;
   display: none;
 }
 
-.movie-container:first-child{
+.movie-container{
   position: relative;
 }
 
@@ -174,7 +174,7 @@ z-index: 2;
   display: none;
 }
 
-.tvShow-container:first-child{
+.tvShow-container{
   position: relative;
 }
 
@@ -191,7 +191,7 @@ z-index: 2;
   right: 150px;
   z-index: 2;
   }
-/*  */
+/* /Paginazione */
 .image_unavailable{
   position: relative;
   display: flex;
