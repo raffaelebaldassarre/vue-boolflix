@@ -206,7 +206,7 @@ z-index: 2;
 
 .changePg{
   background-color:rgba(0, 0, 0, .6);
-  color: white;
+  color: red;
   border: none;
   border-radius: 50%;
   font-size: 15px;

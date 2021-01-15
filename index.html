@@ -39,7 +39,7 @@
                         </span>
                         <div class="movieInfoCard">
                             <h2>{{movie.title}}</h2>
-                            <span class="original_title">Titolo Originale: {{movie.original_title}}</span>
+                            <span class="original_title" v-if="movie.original_title != movie.title">Titolo Originale: {{movie.original_title}}</span>
                             <span class="flex flags">Lingua Originale:
                                 <img :src="`https://www.countryflags.io/${movie.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${movie.original_language}`">
                             </span>
@@ -78,7 +78,7 @@
                         </span>
                         <div class="tvShowInfoCard">
                             <h2>{{tvShow.name}}</h2>
-                            <span class="original_title">Titolo Originale: {{tvShow.original_name}}</span>
+                            <span class="original_title" v-if="tvShow.original_name != tvShow.name">Titolo Originale: {{tvShow.original_name}}</span>
                             <span class="flex flags">Lingua Originale:
                                 <img :src="`https://www.countryflags.io/${tvShow.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${tvShow.original_language}`">
                             </span>
