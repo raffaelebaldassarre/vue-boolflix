@@ -56,7 +56,6 @@ let app = new Vue ({
             axios.get(`https://api.themoviedb.org/3/search/tv?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-It&query=${this.search}&page=${this.pageTvShows}&include_adult=false`)
 
             .then(response => {
-                //console.log(response.data.results);
                 let tvShows = response.data.results;
                 this.listTvShows = tvShows;
                 this.totalpagesTvShows = response.data.total_pages;
@@ -87,23 +86,33 @@ let app = new Vue ({
             if(this.pageMovies != this.totalpagesMovies){
             this.pageMovies++;
             this.searchMoviesTvShows();
+            const scrollMovie = this.$refs.movieContainer;
+            scrollMovie.scrollLeft = 0;
             }
         },
         arrowLeftMovies(){
             if(this.pageMovies > 1){
             this.pageMovies--;
             this.searchMoviesTvShows();
+            const scrollMovie = this.$refs.movieContainer;
+            const widthMovie = scrollMovie.scrollWidth;
+            scrollMovie.scrollLeft = widthMovie;
             }
         },
         arrowRightTvShows(){
             if(this.pageTvShows != this.totalpagesTvShows){
             this.pageTvShows++;
+            const scrollMovie = this.$refs.tvShowContainer;
+            scrollMovie.scrollLeft = 0;
             this.searchMoviesTvShows();
             }
         },
         arrowLeftTvShows(){
             if(this.pageTvShows > 1){
             this.pageTvShows--;
+            const scrollMovie = this.$refs.tvShowContainer;
+            const widthMovie = scrollMovie.scrollWidth;
+            scrollMovie.scrollLeft = widthMovie;
             this.searchMoviesTvShows();
             }
         },
@@ -114,7 +123,7 @@ let app = new Vue ({
         showSearchAtive() {
             this.showSearchActive =! this.showSearchActive;
             const input = this.$refs.inputTextSearch;
-            this.$refs.inputTextSearch.focus(input);
+            input.focus();
           }
     },
     // Random

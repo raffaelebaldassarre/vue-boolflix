@@ -28,11 +28,11 @@
                 <div class="movies_container" v-if='listMovies != ""'>
                     <h2>FILM</h2>
 
-                    <div class="movie-container flex">
+                    <div class="movie-container flex" ref="movieContainer">
 
                         <div class="arrow_movie_left flex">
                             <button @click="arrowLeftMovies()" class="changePg" v-if='pageMovies > 1'>
-                                <span>Pag. {{pageMovies - 1}}</span>
+                                <i class="fas fa-chevron-left"></i>
                             </button>
                         </div>
                         
@@ -57,7 +57,7 @@
                         
                         <div class="arrow_movie_right flex">
                             <button @click="arrowRightMovies()" class="changePg" v-if='(pageMovies < totalpagesMovies)'>
-                                <span>Pag. {{pageMovies + 1}}</span>
+                                <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
@@ -67,11 +67,12 @@
                 <div class="tvShows_container" v-if='listTvShows != ""'>
                     <h2>SERIE TV</h2>
 
-                    <div class="tvShow-container flex">
+                    <div class="tvShow-container flex" ref="tvShowContainer">
 
                         <div class="arrow_tvShow_left flex">
                             <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
-                                <span>Pag. {{pageTvShows - 1}}</span>
+                                <i class="fas fa-chevron-left"></i>
+
                             </button>
                         </div>
 
@@ -96,7 +97,7 @@
 
                         <div class="arrow_tvShow_right flex">
                             <button @click="arrowRightTvShows()" class="changePg" v-if='(pageTvShows < totalpagesTvShows)'>
-                                <span>Pag. {{pageTvShows + 1}}</span>
+                                <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
 
