@@ -26,8 +26,12 @@ body {
  align-items: center;
 }
 
+header {
+  width: 100%;
+}
+
 .container_header {
-  width: 1070px;
+  width: 100%;
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
@@ -39,23 +43,36 @@ body {
   margin: 40px auto;
 }
 
-.container_input{
+.container_search{
+  position: relative;
   align-items: center;
-}
-
-header {
-  width: 100%;
+  margin-right: 50px;
 }
 
 .inputTextSearch{
   height: 30px;
-  width: 300px;
-  font-style: italic;
+  width: 20px;
   font-size: 1rem;
   outline: none;
   border-style: none;
   padding-left: 5px;
   border-radius: 5px;
+  background: 0 0;
+  padding-left: 25px;
+}
+
+.showSearch{
+  width: 250px;
+  border: 1px solid white;
+  color: white;
+}
+
+.fa-search{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  color: white;
 }
 
 .input_button{
@@ -218,6 +235,19 @@ z-index: 2;
 .changePg:hover{
   background-color: black;
 }
+
+.noResults{
+  text-align: center;
+  margin-top: 20vh;
+  color: white;
+}
+
+
+
+
+
+
+
 
 /* for Chrome */
 ::-webkit-scrollbar {

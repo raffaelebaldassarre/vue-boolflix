@@ -11,94 +11,104 @@
     <div id="app">
         <header>
             <div class="container_header flex">
-                <img src="assets/img/baldflix.png" @click="reloadPage()" class="logo">
-                <div class="container_input flex">
-                    <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="searchNow" v-on:keyup.enter="searchMoviesTvShowsInput()"> 
-                    <button class="input_button"@click="searchMoviesTvShowsInput()">Cerca</button>
+                <div class="containerLogo">
+                    <img src="assets/img/baldflix.png" @click="reloadPage()" class="logo">
+                </div>
+                <div class="containerInput">
+                    <div class="container_search">
+                        <i class="fas fa-search" @click="showSearchAtive()"></i></i>
+                        <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="searchNow" v-on:keyup.enter="searchMoviesTvShowsInput()" :class="{ showSearch: showSearchActive}" ref="inputTextSearch"> 
+                    </div>
                 </div>
             </div>
         </header>
        
         <main class="container_main">
-            <div class="movies_container" v-if='listMovies != ""'>
-                <h2>FILM</h2>
+            <div v-if='listMovies != "" || listTvShows != ""'>
+                <div class="movies_container" v-if='listMovies != ""'>
+                    <h2>FILM</h2>
 
-                <div class="movie-container flex">
+                    <div class="movie-container flex">
 
-                    <div class="arrow_movie_left flex">
-                        <button @click="arrowLeftMovies()" class="changePg" v-if='pageMovies > 1'>
-                            <span>Pag. {{pageMovies - 1}}</span>
-                        </button>
-                    </div>
-                    
-                    <div class="movieCard" v-for="movie in listMovies">
-                        <img v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
-                        <span v-else class="image_unavailable">
-                            <span class="title_unavailable">{{movie.original_title}}</span>
-                            <img src="assets/img/poster-image-coming-soon-placeholder.png" class="poster">
-                        </span>
-                        <div class="movieInfoCard">
-                            <h2>{{movie.title}}</h2>
-                            <span class="original_title" v-if="movie.original_title != movie.title">Titolo Originale: {{movie.original_title}}</span>
-                            <span class="flex flags">Lingua Originale:
-                                <img :src="`https://www.countryflags.io/${movie.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${movie.original_language}`">
+                        <div class="arrow_movie_left flex">
+                            <button @click="arrowLeftMovies()" class="changePg" v-if='pageMovies > 1'>
+                                <span>Pag. {{pageMovies - 1}}</span>
+                            </button>
+                        </div>
+                        
+                        <div class="movieCard" v-for="movie in listMovies">
+                            <img v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" class="poster">
+                            <span v-else class="image_unavailable">
+                                <span class="title_unavailable">{{movie.original_title}}</span>
+                                <img src="assets/img/poster-image-coming-soon-placeholder.png" class="poster">
                             </span>
-                            <span>Voto :
-                            <i v-for="starfull in movie.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - movie.vote_average)" class="far fa-star"></i>
-                            </span>
-                            <span class="movie_overview">{{movie.overview}}</span>
+                            <div class="movieInfoCard">
+                                <h2>{{movie.title}}</h2>
+                                <span class="original_title" v-if="movie.original_title != movie.title">Titolo Originale: {{movie.original_title}}</span>
+                                <span class="flex flags">Lingua Originale:
+                                    <img :src="`https://www.countryflags.io/${movie.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${movie.original_language}`">
+                                </span>
+                                <span>Voto :
+                                <i v-for="starfull in movie.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - movie.vote_average)" class="far fa-star"></i>
+                                </span>
+                                <span class="movie_overview">{{movie.overview}}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="arrow_movie_right flex">
+                            <button @click="arrowRightMovies()" class="changePg" v-if='(pageMovies < totalpagesMovies)'>
+                                <span>Pag. {{pageMovies + 1}}</span>
+                            </button>
                         </div>
                     </div>
-                    
-                    <div class="arrow_movie_right flex">
-                        <button @click="arrowRightMovies()" class="changePg" v-if='(pageMovies < totalpagesMovies)'>
-                            <span>Pag. {{pageMovies + 1}}</span>
-                        </button>
-                    </div>
+
                 </div>
 
+                <div class="tvShows_container" v-if='listTvShows != ""'>
+                    <h2>SERIE TV</h2>
+
+                    <div class="tvShow-container flex">
+
+                        <div class="arrow_tvShow_left flex">
+                            <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
+                                <span>Pag. {{pageTvShows - 1}}</span>
+                            </button>
+                        </div>
+
+                        <div class="tvShowCard" v-for="tvShow in listTvShows">
+                            <img v-if="tvShow.poster_path" :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" class="poster">
+                            <span v-else class="image_unavailable">
+                                <span class="title_unavailable">{{tvShow.original_name}}</span>
+                                <img src="assets/img/poster-image-coming-soon-placeholder.png" class="poster">
+                            </span>
+                            <div class="tvShowInfoCard">
+                                <h2>{{tvShow.name}}</h2>
+                                <span class="original_title" v-if="tvShow.original_name != tvShow.name">Titolo Originale: {{tvShow.original_name}}</span>
+                                <span class="flex flags">Lingua Originale:
+                                    <img :src="`https://www.countryflags.io/${tvShow.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${tvShow.original_language}`">
+                                </span>
+                                <span>Voto :
+                                <i v-for="starfull in tvShow.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - tvShow.vote_average)" class="far fa-star"></i>
+                                </span>
+                                <span class="tvShow_overview" >{{tvShow.overview}}</span>
+                            </div>
+                        </div>
+
+                        <div class="arrow_tvShow_right flex">
+                            <button @click="arrowRightTvShows()" class="changePg" v-if='(pageTvShows < totalpagesTvShows)'>
+                                <span>Pag. {{pageTvShows + 1}}</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
-
-            <div class="tvShows_container">
-                <h2>SERIE TV</h2>
-
-                <div class="tvShow-container flex" v-if='listTvShows != ""'>
-
-                    <div class="arrow_tvShow_left flex">
-                        <button @click="arrowLeftTvShows()" class="changePg" v-if='pageTvShows > 1'>
-                            <span>Pag. {{pageTvShows - 1}}</span>
-                        </button>
-                    </div>
-
-                    <div class="tvShowCard" v-for="tvShow in listTvShows">
-                        <img v-if="tvShow.poster_path" :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" class="poster">
-                        <span v-else class="image_unavailable">
-                            <span class="title_unavailable">{{tvShow.original_name}}</span>
-                            <img src="assets/img/poster-image-coming-soon-placeholder.png" class="poster">
-                        </span>
-                        <div class="tvShowInfoCard">
-                            <h2>{{tvShow.name}}</h2>
-                            <span class="original_title" v-if="tvShow.original_name != tvShow.name">Titolo Originale: {{tvShow.original_name}}</span>
-                            <span class="flex flags">Lingua Originale:
-                                <img :src="`https://www.countryflags.io/${tvShow.original_language}/shiny/64.png`" :alt= "`Lingua Originale: ${tvShow.original_language}`">
-                            </span>
-                            <span>Voto :
-                            <i v-for="starfull in tvShow.vote_average" class="fas fa-star"></i><i v-for="starempty in (5 - tvShow.vote_average)" class="far fa-star"></i>
-                            </span>
-                            <span class="tvShow_overview" >{{tvShow.overview}}</span>
-                        </div>
-                    </div>
-
-                    <div class="arrow_tvShow_right flex">
-                        <button @click="arrowRightTvShows()" class="changePg" v-if='(pageTvShows < totalpagesTvShows)'>
-                            <span>Pag. {{pageTvShows + 1}}</span>
-                        </button>
-                    </div>
-
-                </div>
-
+            <div v-else>
+                <h4 class="noResults">Nessun risultato per la tua ricerca di "{{search}}".</h4>
             </div>
         </main>
+
 
     </div>
 
