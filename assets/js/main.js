@@ -18,6 +18,7 @@ let app = new Vue ({
             this.pageTvShows = 1;
             this.search = this.searchNow;
             this.searchMoviesTvShows();
+            this.scrollReset();
             this.searchNow = "";
         },
         searchMoviesTvShows(){
@@ -25,8 +26,6 @@ let app = new Vue ({
             axios.get(`https://api.themoviedb.org/3/search/movie?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-IT&query=${this.search}&page=${this.pageMovies}&include_adult=false`)
 
             .then(response => {
-                //console.log(response);
-                console.log(response.data.results);
                 let movies = response.data.results;
                 this.listMovies = movies;
                 this.totalpagesMovies = response.data.total_pages;
@@ -51,6 +50,7 @@ let app = new Vue ({
                         movie.original_language = "ua";
                       }
                 });
+
             }),
 
             axios.get(`https://api.themoviedb.org/3/search/tv?api_key=96b520e0dc8d25cbd0b85efba9d39c81&language=it-It&query=${this.search}&page=${this.pageTvShows}&include_adult=false`)
@@ -102,17 +102,17 @@ let app = new Vue ({
         arrowRightTvShows(){
             if(this.pageTvShows != this.totalpagesTvShows){
             this.pageTvShows++;
-            const scrollMovie = this.$refs.tvShowContainer;
-            scrollMovie.scrollLeft = 0;
+            const scrolltvShow= this.$refs.tvShowContainer;
+            scrolltvShow.scrollLeft = 0;
             this.searchMoviesTvShows();
             }
         },
         arrowLeftTvShows(){
             if(this.pageTvShows > 1){
             this.pageTvShows--;
-            const scrollMovie = this.$refs.tvShowContainer;
-            const widthMovie = scrollMovie.scrollWidth;
-            scrollMovie.scrollLeft = widthMovie;
+            const scrolltvShow= this.$refs.tvShowContainer;
+            const widthtvShow = scrolltvShow.scrollWidth;
+            scrolltvShow.scrollLeft = widthtvShow ;
             this.searchMoviesTvShows();
             }
         },
@@ -120,11 +120,18 @@ let app = new Vue ({
             location.reload();
         },
         //Per visualizzare l'input e renderlo focus 
-        showSearchAtive() {
+        showSearchAtive(){
             this.showSearchActive =! this.showSearchActive;
             const input = this.$refs.inputTextSearch;
             input.focus();
-          }
+        },
+        scrollReset(){
+            const scrollMovie = this.$refs.movieContainer;
+            scrollMovie.scrollLeft = 0;
+            const scrolltvShow= this.$refs.tvShowContainer;
+            scrolltvShow.scrollLeft = 0;
+        }
+        
     },
     // Random
     mounted (){
