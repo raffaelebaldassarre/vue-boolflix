@@ -12,7 +12,8 @@ body {
 
 .logo{
   cursor: pointer;
-  margin-left: 50px;
+  margin-left: 68px;
+  width: 40%;
 }
 
 .flex{
@@ -36,6 +37,7 @@ header {
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
+  height: 80px;
 }
 
 .container_main{
@@ -87,8 +89,8 @@ header {
 }
 
 h2{   
-  font-size: 25px;
-  margin: 30px 70px;
+  font-size: 22px;
+  margin: 20px 70px;
   color: #FFFFFF;
 }
 
