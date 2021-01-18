@@ -90,7 +90,7 @@ let app = new Vue ({
             scrollMovie.scrollLeft = 0;
             }
         },
-        arrowLeftMovies(){
+        arrowLeftMovies (){
             if(this.pageMovies > 1){
             this.pageMovies--;
             this.searchMoviesTvShows();

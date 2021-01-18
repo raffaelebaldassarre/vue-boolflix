@@ -62,12 +62,14 @@ header {
   border-radius: 5px;
   background: 0 0;
   padding-left: 25px;
+  transition: ease 0.4s;
 }
 
 .showSearch{
   width: 250px;
   border: 1px solid white;
   color: white;
+  transition: ease-in 0.4s;
 }
 
 .fa-search{
@@ -215,6 +217,10 @@ h2{
 .changePg:hover{
   background-color: rgba(0, 0, 0, 0.6);
   font-size: 50px;
+}
+
+.changePg:focus{
+  outline: none;
 }
 /* /Cambiare pagina */
 /* /Paginazione */

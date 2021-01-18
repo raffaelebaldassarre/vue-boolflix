@@ -17,7 +17,8 @@
                 <div class="containerInput">
                     <div class="container_search">
                         <i class="fas fa-search" @click="showSearchAtive()"></i></i>
-                        <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="searchNow" v-on:keyup.enter="searchMoviesTvShowsInput()" :class="{ showSearch: showSearchActive}" ref="inputTextSearch"> 
+                        <input class="inputTextSearch" type="text" placeholder="Cerca un film o una serie tv.." v-model="searchNow" v-on:keyup.enter="searchMoviesTvShowsInput()" :class="{ showSearch: showSearchActive}" ref="inputTextSearch">
+                        <!--Aggiunge la classe showSearch se showSearchActive è true -->
                     </div>
                 </div>
             </div>
